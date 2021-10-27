@@ -11,3 +11,5 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    # executa o Sql está sendo gerado
+    show-sql: true

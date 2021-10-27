@@ -1,6 +1,8 @@
 package com.suhmoraes.springboot2essentials.controller;
 
 import com.suhmoraes.springboot2essentials.domain.Anime;
+import com.suhmoraes.springboot2essentials.resquests.AnimePostRequestBody;
+import com.suhmoraes.springboot2essentials.resquests.AnimePutRequestBody;
 import com.suhmoraes.springboot2essentials.service.AnimeService;
 import com.suhmoraes.springboot2essentials.util.DateUtil;
 import lombok.extern.log4j.Log4j2;
@@ -29,15 +31,21 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.listAll());
     }
 
+    @GetMapping("/find")
+    public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
+        log.info(dateUtil.formatLocalDateTimeToDatabase(LocalDateTime.now()));
+        return ResponseEntity.ok(animeService.findByName(name));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Anime> getById(@PathVariable Long id){
         log.info(dateUtil.formatLocalDateTimeToDatabase(LocalDateTime.now()));
-        return ResponseEntity.ok(animeService.findById(id));
+        return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody Anime anime){
-        return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+        return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -47,8 +55,8 @@ public class AnimeController {
     }
 
     @PutMapping
-    public ResponseEntity<Anime> replace(@RequestBody Anime anime){
-        animeService.replace(anime);
+    public ResponseEntity<Anime> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
+        animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
