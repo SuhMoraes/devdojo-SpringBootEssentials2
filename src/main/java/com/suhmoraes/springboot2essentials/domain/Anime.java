@@ -1,9 +1,11 @@
 package com.suhmoraes.springboot2essentials.domain;
 
+import jdk.jfr.Unsigned;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,5 +25,6 @@ public class Anime {
     private Long id;
 
     private String name;
+
 
 }

@@ -40,12 +40,12 @@ public class RestExceptionHandler {
        String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
        String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
 
-        return new ResponseEntity<> (
+        return new ResponseEntity<>(
                 ValidationExceptionDetails.builder()
                         .timestamp(LocalDateTime.now())
                         .status(HttpStatus.BAD_REQUEST.value())
                         .title("Bad Request Exception, Invalid Fields")
-                        .details(exception.getMessage())
+                        .details("Check the field(s) error")
                         .developerMessage(exception.getClass().getName())
                         .fields(fields)
                         .fieldsMessage(fieldsMessage)
