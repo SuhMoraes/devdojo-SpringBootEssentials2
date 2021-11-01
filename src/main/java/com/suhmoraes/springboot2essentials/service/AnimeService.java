@@ -6,25 +6,23 @@ import com.suhmoraes.springboot2essentials.mapper.AnimeMapper;
 import com.suhmoraes.springboot2essentials.repository.AnimeRepository;
 import com.suhmoraes.springboot2essentials.resquests.AnimePostRequestBody;
 import com.suhmoraes.springboot2essentials.resquests.AnimePutRequestBody;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AnimeService {
 
     private final AnimeRepository animeRepository;
 
-    @Autowired
-    public AnimeService(AnimeRepository animeRepository) {
-        this.animeRepository = animeRepository;
-    }
-
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
     }
 
     public List<Anime> findByName(String name) {
