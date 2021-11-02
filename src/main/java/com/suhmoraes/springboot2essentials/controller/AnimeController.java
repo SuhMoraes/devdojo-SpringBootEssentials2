@@ -34,6 +34,12 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Anime>> listAll() {
+        log.info(dateUtil.formatLocalDateTimeToDatabase(LocalDateTime.now()));
+        return ResponseEntity.ok(animeService.listAllNonPageable());
+    }
+
     @GetMapping("/find")
     public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
         log.info(dateUtil.formatLocalDateTimeToDatabase(LocalDateTime.now()));
@@ -52,13 +58,13 @@ public class AnimeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Anime> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
-    public ResponseEntity<Anime> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
         animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -21,8 +21,14 @@ public class AnimeService {
 
     private final AnimeRepository animeRepository;
 
+    // Paginação
     public Page<Anime> listAll(Pageable pageable) {
         return animeRepository.findAll(pageable);
+    }
+
+    // Lista
+    public List<Anime> listAllNonPageable() {
+        return animeRepository.findAll();
     }
 
     public List<Anime> findByName(String name) {
@@ -49,6 +55,5 @@ public class AnimeService {
          anime.setId(savedAnime.getId());
        animeRepository.save(anime);
     }
-
 
 }
