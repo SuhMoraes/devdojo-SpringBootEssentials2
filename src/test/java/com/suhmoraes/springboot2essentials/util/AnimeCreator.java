@@ -4,23 +4,25 @@ import com.suhmoraes.springboot2essentials.domain.Anime;
 
 public class AnimeCreator {
 
-    public static Anime creteAnimeToBeSaved() { // ANime que não tem Id
+    public static Anime createAnimeToBeSaved() { // ANime que não tem Id
         return Anime.builder()
-                .name("Naruto")
+                .name("Nichijou")
                 .build();
 
     }
 
-    public static Anime creteValidAnime() { // Anime com Id válido
+    public static Anime createValidAnime() { // Anime com Id válido
         return Anime.builder()
-                .name("Naruto")
+                .name("Nichijou")
+                .id(1L)
                 .build();
 
     }
 
-    public static Anime creteValidUpdateAnime() {
+    public static Anime createValidUpdateAnime() {
         return Anime.builder()
-                .name("Naruto 2")
+                .name("Nichijou 2")
+                .id(1l)
                 .build();
 
     }

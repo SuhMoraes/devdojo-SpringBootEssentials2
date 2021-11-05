@@ -25,7 +25,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save persists anime when Succeful")
     void save_PersistAnime_WhenSuccessful(){
-        Anime animeToBeSaved = AnimeCreator.creteAnimeToBeSaved(); // Cria o anime
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved(); // Cria o anime
         Anime animeSaved = this.animeRepository.save(animeToBeSaved); // Salva o Anime
         Assertions.assertThat(animeSaved).isNotNull(); // Verifica se o Anime não é nulo
         Assertions.assertThat(animeSaved.getId()).isNotNull(); // Verifica se o Anime Tem ID
@@ -35,7 +35,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save update anime when Succeful")
     void save_UpdateAnime_WhenSuccessful(){
-        Anime animeToBeSaved = AnimeCreator.creteAnimeToBeSaved();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         animeSaved.setName("Overlord"); // Altera o nome do Anime
         Anime animeUpdated = this.animeRepository.save(animeSaved); // Salva a alteração do nome
@@ -47,7 +47,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Delete removes anime when Succeful")
     void save_DeleteAnime_WhenSuccessful(){
-        Anime animeToBeSaved = AnimeCreator.creteAnimeToBeSaved();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         this.animeRepository.delete(animeSaved);
         Optional<Anime> animeOptional = this.animeRepository.findById(animeSaved.getId());
@@ -58,7 +58,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Find By Name returns list of anime when Succeful")
     void findByName_ReturnListOfAnime_WhenSuccessful(){
-        Anime animeToBeSaved = AnimeCreator.creteAnimeToBeSaved();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         String name = animeSaved.getName();
         List<Anime> animes = this.animeRepository.findByName(name);

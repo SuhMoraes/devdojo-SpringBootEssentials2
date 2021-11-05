@@ -44,7 +44,7 @@ public class AnimeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Anime> getById(@PathVariable Long id){
+    public ResponseEntity<Anime> findById(@PathVariable long id){
         return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
     }
 
@@ -62,6 +62,6 @@ public class AnimeController {
     @PutMapping
     public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody){
         animeService.replace(animePutRequestBody);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
